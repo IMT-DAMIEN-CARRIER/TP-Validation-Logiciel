@@ -13,39 +13,38 @@ const utils = require('../../utils');
 const init = require('../../init');
 
 describe("Page de connexion", async () => {
-	
-	it("Lancement du navigateur et accès à l'url renseignée", async () => {
+    it("Lancement du navigateur et accès à l'url renseignée", async () => {
         await utils.pageAccess(init.googleUrl);
     });
-	
+
     it("Saisie de la chaîne de caractères 'wikipedia logiciel'", async () => {
         await utils.googleSearch('wikipedia logiciel');
     });
-	
-	it("Clic sur le résultat 'Logiciel — Wikipédia'", async () => {
+
+    it("Clic sur le résultat 'Logiciel — Wikipédia'", async () => {
         await utils.googleResult('Logiciel - — Wikipédia');
     });
-	
-	/*it("Vérification des onglets affichés sur la page Wikipedia", async () => {
+
+    /*it("Vérification des onglets affichés sur la page Wikipedia", async () => {
         var tabTarget = {
-			matchingResult: true,
-			checkTabsOrder: true,
-			tabsDef: [
-				{
-					tabName: "Lire"
-				},
-				{
-					tabName: "Modifier"
-				},
-				{
-					tabName: "Modifier le code"
-				},
-				{
-					tabName: "Voir l’historique"
-				}
-			]
-		}
-		await utils.wikipediaTabs(tabTarget);
+            matchingResult: true,
+            checkTabsOrder: true,
+            tabsDef: [
+                {
+                    tabName: "Lire"
+                },
+                {
+                    tabName: "Modifier"
+                },
+                {
+                    tabName: "Modifier le code"
+                },
+                {
+                    tabName: "Voir l’historique"
+                }
+            ]
+        }
+        await utils.wikipediaTabs(tabTarget);
     });*/
 
     /*it("Saisie de chaîne de caractères - Data Driven Test", async () => {

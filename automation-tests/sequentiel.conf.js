@@ -8,12 +8,12 @@ scriptConf['capabilities'].browserName = 'chrome';
 scriptConf['capabilities'].unexpectedAlertBehaviour = 'accept';
 
 scriptConf['capabilities']['goog:chromeOptions'] = {
-    'args': [/*"--headless",*/ "--window-size=1920,1080", 'disable-infobars','--no-sandbox'],
+    'args': [/*"--headless",*/ "--window-size=1920,1080", 'disable-infobars', '--no-sandbox'],
     w3c: false
-  }
+}
 
 scriptConf['suites'] = {
-	Wikipedia: 'scripts/testsSuites/Wikipedia/searchWord.Spec.js',
+    Wikipedia: 'scripts/testsSuites/Wikipedia/searchWord.Spec.js',
     //ImpotsGouv: 'scripts/testsSuites/ImpotsGouv/gouv.Spec.js',
 };
 
