@@ -31,6 +31,6 @@
   },
   "scripts": {
     "test:sequentiel": "protractor sequentiel.conf.js",
-    "webdriver": "sudo webdriver-manager update && sudo webdriver-manager start"
+    "webdriver": "sudo webdriver-manager update --chromedriver && sudo webdriver-manager start"
   }
 }

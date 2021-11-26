@@ -8,7 +8,7 @@ scriptConf['capabilities'].browserName = 'chrome';
 scriptConf['capabilities'].unexpectedAlertBehaviour = 'accept';
 
 scriptConf['capabilities']['goog:chromeOptions'] = {
-    'args': [/*"--headless",*/ "--window-size=1920,1080", 'disable-infobars'],
+    'args': [/*"--headless",*/ "--window-size=1920,1080", 'disable-infobars','--no-sandbox'],
     w3c: false
   }
 
