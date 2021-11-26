@@ -24,7 +24,12 @@ browser.ignoreSynchronization = true;
 async function pageAccess(envUrl) {
     await browser.manage().window().maximize();
     await browser.get(envUrl);
-    await browser.sleep(4000);
+    let popup = await element(by.css('div.dbsFrd'));
+
+    if (await popup.isPresent()) {
+        let close = await element(by.css('button#L2AGLb'));
+        await close.click();
+    }
 }
 
 async function googleSearch(stringToSet) {
@@ -46,6 +51,7 @@ async function googleSearch(stringToSet) {
     for (var i = 0; i < dropdownString.length; i++) {
         displayedString[i] = await dropdownString[i].getText();
         console.log(displayedString[i]);
+
         if (displayedString[i] == stringToSet) {
             console.log("Chaîne de caractères '" + stringToSet + "' identifiée dans le menu déroulant");
             stringFound = true;
@@ -62,10 +68,12 @@ async function googleSearch(stringToSet) {
         await browser.sleep(500);
         console.log("Clic effectué sur la valeur correspondante");
     }
+
     expect(stringFound).to.equal(true, "Echec d'identification de la chaîne de caractères '" + stringToSet + "' dans le menu déroulant");
 }
 
 async function googleResult(stringTarget) {
+    console.log('---------------');
     let divResult = await elementRepo.googleResultPath.all(by.css('div.g'));
     console.log("Nombre de résultats identifiés sur la page : " + divResult.length);
 
@@ -76,6 +84,7 @@ async function googleResult(stringTarget) {
     for (var i = 0; i < divResult.length; i++) {
         displayedResult[i] = await divResult[i].element(by.css('a h3')).getText();
         console.log(displayedResult[i]);
+
         if (displayedResult[i] == stringTarget) {
             console.log("Résultat '" + stringTarget + "' identifié");
             resultFound = true;
@@ -113,6 +122,7 @@ async function wikipediaTabs(tabsData) {
     if (tabsData.matchingResult) {
         // Vérifier que l'ensemble des onglets affichés correspond RIGOUREUSEMENT à ceux attendus (ni plus, ni moins)
         let dataListRecognized = false;
+
         if (nbDisplayedTabs == nbExpectedTabs) {
             dataListRecognized = true;
 

@@ -22,7 +22,7 @@ describe("Page de connexion", async () => {
     });
 
     it("Clic sur le résultat 'Logiciel — Wikipédia'", async () => {
-        await utils.googleResult('Logiciel - — Wikipédia');
+        await utils.googleResult('Logiciel - Wikipédia');
     });
 
     /*it("Vérification des onglets affichés sur la page Wikipedia", async () => {

@@ -4,7 +4,7 @@
 
 
 const googleListPath = element(by.css('div.UUbT9'));
-const googleResultPath = element(by.css('div#rso div div'));
+const googleResultPath = element(by.css('div#rso'));
 const wikipediaRightTabs = element(by.css('div#right-navigation div#p-views'));
 
 module.exports = {
