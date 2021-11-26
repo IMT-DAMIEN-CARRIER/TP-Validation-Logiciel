@@ -12,7 +12,7 @@ browser.ignoreSynchronization = true;
 const utils = require('../../utils');
 const init = require('../../init');
 
-describe("Page de connexion", async () => {
+describe("Page de connexion", async () => {gaa
 	
 	it("Lancement du navigateur et accès à l'url renseignée", async () => {
         await utils.pageAccess(init.googleUrl);
