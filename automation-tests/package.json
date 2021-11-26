@@ -1,0 +1,36 @@
+{
+  "name": "mines-ales",
+  "version": "1.0.0",
+  "description": "Automation_Tests",
+  "author": "TMO",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "-": "0.0.1",
+    "bluebird": "3.5.1",
+    "body-parser": "1.18.3",
+    "co": "4.6.0",
+    "config": "2.0.1",
+    "csv-parse": "2.5.0",
+    "lodash": "^4.17.10",
+    "npm": "^6.4.1",
+    "protractor": "^7.0.0"
+  },
+  "devDependencies": {
+    "chai": "4.1.2",
+    "chai-as-promised": "7.1.1",
+    "chai-http": "4.0.0",
+    "csv-parse": "2.5.0",
+    "fast-csv": "^2.4.1",
+    "knex": "^0.15.2",
+    "mocha": "5.2.0",
+    "mochawesome": "3.0.3",
+    "mochawesome-screenshots": "1.6.0",
+    "moment": "^2.22.2",
+    "pg": "7.4.3",
+    "webdriver-manager": "^12.1.0"
+  },
+  "scripts": {
+    "test:sequentiel": "protractor sequentiel.conf.js",
+    "webdriver": "webdriver-manager update && webdriver-manager start"
+  }
+}
