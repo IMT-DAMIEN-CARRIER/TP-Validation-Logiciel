@@ -14,7 +14,7 @@ scriptConf['capabilities']['goog:chromeOptions'] = {
 
 scriptConf['suites'] = {
     Wikipedia: 'scripts/testsSuites/Wikipedia/searchWord.Spec.js',
-    //ImpotsGouv: 'scripts/testsSuites/ImpotsGouv/gouv.Spec.js',
+    ImpotsGouv: 'scripts/testsSuites/ImpotsGouv/gouv.Spec.js',
 };
 
 exports.config = scriptConf;

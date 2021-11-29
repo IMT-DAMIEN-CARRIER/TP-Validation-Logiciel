@@ -25,7 +25,7 @@ describe("Page de connexion", async () => {
         await utils.googleResult('Logiciel - Wikipédia');
     });
 
-    /*it("Vérification des onglets affichés sur la page Wikipedia", async () => {
+    it("Vérification des onglets affichés sur la page Wikipedia", async () => {
         var tabTarget = {
             matchingResult: true,
             checkTabsOrder: true,
@@ -45,13 +45,15 @@ describe("Page de connexion", async () => {
             ]
         }
         await utils.wikipediaTabs(tabTarget);
-    });*/
+    });
 
-    /*it("Saisie de chaîne de caractères - Data Driven Test", async () => {
+    it("Saisie de chaîne de caractères - Data Driven Test", async () => {
         let ddt = await utils.extractDataRead(__dirname + '//stringsToSet.csv')
-		console.log("Nombre de lignes dans le fichier externe : " + ddt.length);
-		for (let i = 0; i < ddt.length; i++) console.log(ddt[i]);
-		//for (let i = 0; i < ddt.length; i++) await utils.googleSearch(ddt[i]);
-    });*/
-
+        console.log("Nombre de lignes dans le fichier externe : " + ddt.length);
+        for (let i = 0; i < ddt.length; i++) console.log(ddt[i]);
+        for (let i = 0; i < ddt.length; i++) {
+            await utils.pageAccess(init.googleUrl);
+            await utils.googleSearch(ddt[i]);
+        }
+    });
 });

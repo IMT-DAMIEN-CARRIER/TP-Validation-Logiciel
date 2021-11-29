@@ -33,6 +33,7 @@ async function pageAccess(envUrl) {
 }
 
 async function googleSearch(stringToSet) {
+    let stringToSetLower = stringToSet.toLowerCase();
     let inputElement = await element(by.css('input.gsfi'));
     expect(await inputElement.isPresent()).to.equal(true, "Echec d'identification de l'élément 'input'");
     await inputElement.click();
@@ -41,18 +42,16 @@ async function googleSearch(stringToSet) {
 
     await inputElement.clear().sendKeys(stringToSet);
     console.log("Saisie de la chaîne de caractères '" + stringToSet + "' effectuée");
-    //await browser.wait(until.textToBePresentInElementValue(inputElement, stringToSet), 3000, "Echec de saisie de la chaîne de caractères '" + stringToSet + "'");
+    await browser.wait(until.textToBePresentInElementValue(inputElement, stringToSet), 3000, "Echec de saisie de la chaîne de caractères '" + stringToSet + "'");
     await browser.sleep(500);
 
-    let dropdownString = await elementRepo.googleListPath.all(by.cssContainingText('span', stringToSet));
+    let dropdownString = await elementRepo.googleListPath.all(by.cssContainingText('span', stringToSetLower));
     console.log("Nombre de valeurs identifiées dans le menu déroulant : " + dropdownString.length);
     let displayedString = [], stringFound = false, elementTarget;
-
     for (var i = 0; i < dropdownString.length; i++) {
         displayedString[i] = await dropdownString[i].getText();
         console.log(displayedString[i]);
-
-        if (displayedString[i] == stringToSet) {
+        if (displayedString[i] == stringToSetLower) {
             console.log("Chaîne de caractères '" + stringToSet + "' identifiée dans le menu déroulant");
             stringFound = true;
             elementTarget = dropdownString[i];
@@ -68,7 +67,6 @@ async function googleSearch(stringToSet) {
         await browser.sleep(500);
         console.log("Clic effectué sur la valeur correspondante");
     }
-
     expect(stringFound).to.equal(true, "Echec d'identification de la chaîne de caractères '" + stringToSet + "' dans le menu déroulant");
 }
 
