@@ -17,6 +17,7 @@ const path = require('path');
 const fs = require('fs');
 const csv = require('fast-csv');
 const moment = require('moment');
+const {element} = require('protractor');
 browser.ignoreSynchronization = true;
 
 
@@ -31,6 +32,17 @@ async function pageAccess(envUrl) {
         await close.click();
     }
 }
+
+async function impotBtn(btnTitle) {
+    let btnPath = await element(by.cssContainingText('a', btnTitle));
+
+    if (await btnPath.isPresent()) {
+        console.log("bouton : '" + btnTitle + "' identifié");
+        await btnPath.click();
+        console.log("Clic sur le bouton '" + btnTitle + "' effectué");
+    } else throw new Error("Echec de l'identification du bouton '" + btnTitle + "'")
+}
+
 
 async function googleSearch(stringToSet) {
     let stringToSetLower = stringToSet.toLowerCase();
@@ -48,9 +60,11 @@ async function googleSearch(stringToSet) {
     let dropdownString = await elementRepo.googleListPath.all(by.cssContainingText('span', stringToSetLower));
     console.log("Nombre de valeurs identifiées dans le menu déroulant : " + dropdownString.length);
     let displayedString = [], stringFound = false, elementTarget;
+
     for (var i = 0; i < dropdownString.length; i++) {
         displayedString[i] = await dropdownString[i].getText();
         console.log(displayedString[i]);
+
         if (displayedString[i] == stringToSetLower) {
             console.log("Chaîne de caractères '" + stringToSet + "' identifiée dans le menu déroulant");
             stringFound = true;
@@ -67,11 +81,11 @@ async function googleSearch(stringToSet) {
         await browser.sleep(500);
         console.log("Clic effectué sur la valeur correspondante");
     }
+
     expect(stringFound).to.equal(true, "Echec d'identification de la chaîne de caractères '" + stringToSet + "' dans le menu déroulant");
 }
 
 async function googleResult(stringTarget) {
-    console.log('---------------');
     let divResult = await elementRepo.googleResultPath.all(by.css('div.g'));
     console.log("Nombre de résultats identifiés sur la page : " + divResult.length);
 
@@ -81,8 +95,7 @@ async function googleResult(stringTarget) {
 
     for (var i = 0; i < divResult.length; i++) {
         displayedResult[i] = await divResult[i].element(by.css('a h3')).getText();
-        console.log(displayedResult[i]);
-
+        console.log("'" + displayedResult[i] + "'");
         if (displayedResult[i] == stringTarget) {
             console.log("Résultat '" + stringTarget + "' identifié");
             resultFound = true;
@@ -195,7 +208,9 @@ async function wikipediaTabs(tabsData) {
             console.log("L'ordre d'affichage des onglets est bien respecté");
         } else {
             console.log("L'ordre d'affichage des onglets n'est pas respecté. Ordre ATTENDU :");
+
             for (let i = 0; i < nbExpectedTabs; i++) console.log("-- " + tabToCheck[i]);
+
             expect(matchingTabsOrder).to.equal(true, "L'ordre d'affichage des onglets n'est pas respecté");
         }
     } else console.log("Pas de vérification paramétrée sur l'ordre d'affichage des onglets");
@@ -222,5 +237,6 @@ module.exports = {
     googleSearch,
     googleResult,
     wikipediaTabs,
-    extractDataRead
+    extractDataRead,
+    impotBtn
 };
